@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Juju on blinkeye</title>
+    <link>https://blinkeye.github.io/tags/juju/</link>
+    <description>Recent content in Juju on blinkeye</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 24 May 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blinkeye.github.io/tags/juju/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Conjure-up with MAAS</title>
+      <link>https://blinkeye.github.io/post/public/2019-05-24-conjure-up/</link>
+      <pubDate>Fri, 24 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/post/public/2019-05-24-conjure-up/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes Dashboard</title>
+      <link>https://blinkeye.github.io/post/public/2019-05-30-kubernetes-dashboard/</link>
+      <pubDate>Tue, 21 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/post/public/2019-05-30-kubernetes-dashboard/</guid>
+      <description>&lt;p&gt;If you ever worked with the &lt;a href=&#34;https://github.com/kubernetes/dashboard&#34;&gt;Kubernetes Dashboard&lt;/a&gt; you certainly have noticed the rather short session timeout (about 10 minutes).&lt;/p&gt;
+
+&lt;p&gt;By adjusting the startup parameters you can either:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Increase the timeout&lt;/li&gt;
+&lt;li&gt;Disable the timeout&lt;/li&gt;
+&lt;li&gt;Skip authentication altogether&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Skipping the authentication is useful in a dev environment where you don&amp;rsquo;t need or want authentication.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

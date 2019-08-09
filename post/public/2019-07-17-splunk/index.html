@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Splunk Log Analysis - blinkeye</title>
+  <meta property="og:title" content="Splunk Log Analysis" />
+  <meta name="twitter:title" content="Splunk Log Analysis" />
+  <meta name="description" content="Index Kubernetes Pod Log Files">
+  <meta property="og:description" content="Index Kubernetes Pod Log Files">
+  <meta name="twitter:description" content="Index Kubernetes Pod Log Files">
+  <meta name="author" content="blinkeye"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "blinkeye",
+    
+    "url": "https:\/\/blinkeye.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/blinkeye.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/blinkeye.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/blinkeye.github.io\/post\/public\/2019-07-17-splunk\/",
+          "name": "Splunk log analysis"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "blinkeye"
+  },
+  "headline": "Splunk Log Analysis",
+  "description" : "",
+  "inLanguage" : "en",
+  "wordCount":  590 ,
+  "datePublished" : "2019-06-19T00:00:00",
+  "dateModified" : "2019-06-19T00:00:00",
+  "image" : "https:\/\/blinkeye.github.io\/img\/blinkeye.webp",
+  "keywords" : [ "Kubernetes, Cloud, Sysadmin" ],
+  "mainEntityOfPage" : "https:\/\/blinkeye.github.io\/post\/public\/2019-07-17-splunk\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/blinkeye.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/blinkeye.github.io\/img\/blinkeye.webp",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Splunk Log Analysis" />
+<meta property="og:description" content="Index Kubernetes Pod Log Files">
+<meta property="og:image" content="https://blinkeye.github.io/img/splunk/graffiti.webp" />
+<meta property="og:url" content="https://blinkeye.github.io/post/public/2019-07-17-splunk/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="blinkeye" />
+
+  <meta name="twitter:title" content="Splunk Log Analysis" />
+  <meta name="twitter:description" content="Index Kubernetes Pod Log Files">
+  <meta name="twitter:image" content="https://blinkeye.github.io/img/splunk/graffiti.webp" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https://blinkeye.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://blinkeye.github.io/img/splunk/graffiti.webp" />
+  <meta name="twitter:image" content="https://blinkeye.github.io/img/splunk/graffiti.webp" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://blinkeye.github.io/post/public/2019-07-17-splunk/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="blinkeye" />
+
+  <meta name="generator" content="Hugo 0.56.3" />
+  <link rel="alternate" href="https://blinkeye.github.io/index.xml" type="application/rss+xml" title="blinkeye"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://blinkeye.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://blinkeye.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://blinkeye.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blinkeye.github.io">blinkeye</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="blinkeye" href="https://blinkeye.github.io">
+            <img class="avatar-img" src="https://blinkeye.github.io/img/blinkeye.webp" alt="blinkeye" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Splunk Log Analysis</h1>
+              
+              
+              
+                
+                  <h2 class="post-subheading">Index Kubernetes Pod Log Files</h2>
+                
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on June 19, 2019
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;3&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;590&nbsp;words
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;blinkeye
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <h1 id="splunk-setup">Splunk Setup</h1>
+
+<ul>
+<li><a href="https://www.howtoforge.com/tutorial/ubuntu-splunk-log-analyzer/">How to Install Splunk Log Analyzer on Ubuntu 18.04 LTS</a></li>
+<li><a href="https://docs.splunk.com/Documentation/Splunk/7.3.0/Security/Secureyouradminaccount">Create a user account</a></li>
+<li><a href="https://docs.splunk.com/Documentation/Splunk/7.3.0/Indexer/RemovedatafromSplunk">Remove indexes</a></li>
+</ul>
+
+<h2 id="configuration-for-k8s-pod-docker-logs-timestamps">Configuration for K8s POD (Docker) Logs Timestamps</h2>
+
+<p>If you have multiple timestamps like:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;1:C 15 Jul 10:45:11.952 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:45:11.9539845Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;1:C 15 Jul 10:45:11.952 # Redis version=4.0.14, bits=64, commit=00000000, modified=0, pid=1, just started\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:45:11.954027528Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;1:C 15 Jul 10:45:11.952 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:45:11.954032886Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;1:M 15 Jul 10:45:11.955 * Running mode=standalone, port=6379.\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:45:11.955395061Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;1:M 15 Jul 10:45:11.955 # WARNING: The TCP backlog setting of 511 cannot be enforced because /proc/sys/net/core/somaxconn is set to the lower value of 128.\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:45:11.955457142Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;1:M 15 Jul 10:45:11.955 # Server initialized\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:45:11.955463896Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;1:M 15 Jul 10:45:11.955 # WARNING you have Transparent Huge Pages (THP) support enabled in your kernel. This will create latency and memory usage issues with Redis. To fix this issue run the command &#39;echo never \u003e /sys/kernel/mm/transparent_hugepage/enabled&#39; as root, and add it to your /etc/rc.local in order to retain the setting after a reboot. Redis must be restarted after THP is disabled.\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:45:11.955499192Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;1:M 15 Jul 10:45:12.124 * DB loaded from disk: 0.169 seconds\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:45:12.129959744Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;1:M 15 Jul 10:45:12.124 * Ready to accept connections\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:45:12.129988781Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;1:M 15 Jul 10:50:12.017 * 100 changes in 300 seconds. Saving...\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:50:12.017567933Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;1:M 15 Jul 10:50:12.017 * Background saving started by pid 12\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:50:12.017982346Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;12:C 15 Jul 10:50:12.688 * DB saved on disk\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:50:12.688433246Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;12:C 15 Jul 10:50:12.689 * RDB: 0 MB of memory used by copy-on-write\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:50:12.689237494Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;1:M 15 Jul 10:50:12.728 * Background saving terminated with success\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:50:12.728976365Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;1:M 15 Jul 10:55:16.875 * 100 changes in 300 seconds. Saving...\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:55:16.875731998Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;1:M 15 Jul 10:55:16.876 * Background saving started by pid 13\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:55:16.877000117Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;13:C 15 Jul 10:55:17.481 * DB saved on disk\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:55:17.482132948Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;13:C 15 Jul 10:55:17.482 * RDB: 0 MB of memory used by copy-on-write\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:55:17.482905954Z&#34;</span><span class="o">}</span>
+<span class="o">{</span><span class="s2">&#34;log&#34;</span>:<span class="s2">&#34;1:M 15 Jul 10:55:17.578 * Background saving terminated with success\n&#34;</span>,<span class="s2">&#34;stream&#34;</span>:<span class="s2">&#34;stdout&#34;</span>,<span class="s2">&#34;time&#34;</span>:<span class="s2">&#34;2019-07-15T10:55:17.578733797Z&#34;</span><span class="o">}</span></code></pre></div>
+<p>you need to tell Splunk which fields to index. Otherwise you get a mismatch between <code>event_time</code> and <code>index_time</code>:</p>
+
+
+<link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="/img/splunk/splunk.webp" alt="/img/splunk/splunk.webp"/>
+    </div>
+    <a href="/img/splunk/splunk.webp" itemprop="contentUrl"></a>
+      <figcaption><h4>Splunk: Multiple time stamps</h4>
+      </figcaption>
+  </figure>
+</div>
+
+
+<p>Use the following specification to force Splunk to use the timestamp with the <code>&quot;time&quot;:&quot;</code> prefix in the end of a log line:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cat <span class="s">&lt;&lt;EOF &gt;/opt/splunk/etc/system/local/props.conf
+</span><span class="s">[source::/var/log/hetzner/*]
+</span><span class="s">TZ = GMT
+</span><span class="s">TIME_FORMAT = %Y-%m-%dT%H:%M:%S.%9QZ
+</span><span class="s">TIME_PREFIX = &#34;time&#34;:&#34;
+</span><span class="s">INDEXED_EXTRACTIONS = JSON
+</span><span class="s">SHOULD_LINEMERGE = false
+</span><span class="s">EOF</span></code></pre></div>
+<p>Stop and re-index splunk:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo /opt/splunk/bin/splunk stop
+$ sudo /opt/splunk/bin/splunk clean eventdata
+$ sudo /opt/splunk/bin/splunk start</code></pre></div>
+<p>and log in to: <a href="http://127.0.0.1:8000">http://127.0.0.1:8000</a></p>
+
+<p>References:</p>
+
+<ul>
+<li><a href="https://docs.splunk.com/Documentation/Splunk/7.3.0/Data/Configuretimestamprecognition">Splunk: Configure timestamp recognition</a></li>
+<li><a href="https://docs.splunk.com/Documentation/Splunk/latest/SearchReference/Commontimeformatvariables">Splunk: Date and time format variables</a></li>
+<li><a href="https://answers.splunk.com/answers/513481/how-to-fix-wrong-timestamping-issues.html">How to fix wrong timestamp issues</a></li>
+</ul>
+
+<h2 id="index-k8s-log-files-on-another-host">Index K8s log files on another host</h2>
+
+<p>Reference: <a href="https://answers.splunk.com/answers/64509/howto-pull-logs-into-trusted-network-from-a-forwarder-located-in-dmz.html">HowTo pull logs into trusted network from a forwarder located in DMZ</a></p>
+
+<h3 id="client-configuration">Client configuration</h3>
+
+<p>On each Hetzner cloud host:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo crontab -e
+ 
+*/15 * * * * cronic sh -c <span class="s1">&#39;rsync -av --hard-links --append-verify --copy-links /var/log/pods /home/&lt;username&gt;/hetzner&#39;</span></code></pre></div>
+<h3 id="splunk-server-configuration">Splunk Server configuration</h3>
+
+<p>On target host (Octopus) with the Splunk server install package <code>keychain</code> and as regular user:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ crontab -e
+
+*/15 * * * * cronic sh -c <span class="s1">&#39;. ~/.keychain/octopus-sh; for i in `seq 1 3`; do rsync -e ssh -av --append-verify hetzner$i:hetzner/pods /var/log/hetzner/hetzner$i; done&#39;</span></code></pre></div>
+<p>Add the directory being rsynced to the index and use the 4th segment in the directory path as the host name:</p>
+
+<p>
+
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="/img/splunk/Selection_1.webp" alt="/img/splunk/Selection_1.webp"/>
+    </div>
+    <a href="/img/splunk/Selection_1.webp" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+  
+
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="/img/splunk/Selection_2.webp" alt="/img/splunk/Selection_2.webp"/>
+    </div>
+    <a href="/img/splunk/Selection_2.webp" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+  
+
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="/img/splunk/Selection_3.webp" alt="/img/splunk/Selection_3.webp"/>
+    </div>
+    <a href="/img/splunk/Selection_3.webp" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+  
+
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="/img/splunk/Selection_4.webp" alt="/img/splunk/Selection_4.webp"/>
+    </div>
+    <a href="/img/splunk/Selection_4.webp" itemprop="contentUrl"></a>
+  </figure>
+</div>
+</p>
+
+<h2 id="stuff-to-remember">Stuff to remember</h2>
+
+<p>Splunk searches:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="s2">&#34;could not be resolved (3: Host not found) while in resolving client address&#34;</span> OR <span class="s2">&#34;client login failed.*client:&#34;</span>
+<span class="s2">&#34;socketmap:unix:/tmp/podop.socket:domain socketmap server temporary error: unknown error&#34;</span></code></pre></div>
+<p>Visualize client_ips (in my case login bots/attacks):</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span><span class="s2">&#34;could not be resolved (3: Host not found) while in resolving client address&#34;</span> OR <span class="s2">&#34;client login failed.*client:&#34;</span><span class="o">)</span> <span class="p">|</span> iplocation client_ip <span class="p">|</span> geostats count by Country</code></pre></div>
+
+
+<div class="box" >
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="/img/splunk/geostats.webp" alt="/img/splunk/geostats.webp"/>
+    </div>
+    <a href="/img/splunk/geostats.webp" itemprop="contentUrl"></a>
+      <figcaption><h4>Splunk: Geostats of clients</h4>
+      </figcaption>
+  </figure>
+</div>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://blinkeye.github.io/tags/kubernetes/">Kubernetes</a>&nbsp;
+            
+              <a href="https://blinkeye.github.io/tags/cloud/">Cloud</a>&nbsp;
+            
+              <a href="https://blinkeye.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+          
+          <h4 class="see-also">See also</h4>
+          <ul>
+          
+            <li><a href="/post/public/2019-05-30-kubernetes-dashboard/">Kubernetes Dashboard</a></li>
+          
+            <li><a href="/post/public/2019-05-28-private-docker-registry/">Private Docker Registry</a></li>
+          
+            <li><a href="/post/public/2019-05-24-conjure-up/">Conjure-up with MAAS</a></li>
+          
+          </ul>
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://blinkeye.github.io/post/public/2019-05-28-private-docker-registry/" data-toggle="tooltip" data-placement="top" title="Private Docker Registry">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://blinkeye.github.io/post/public/2019-07-25-hetzner-k8s-with-private-network/" data-toggle="tooltip" data-placement="top" title="K8s on the Hetzner Cloud">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/blinkeye" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://gitlab.com/blinkeye" title="GitLab">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-gitlab fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="blog.blinkeye.ch">blinkeye</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://blinkeye.github.io">blinkeye</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.56.3</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://blinkeye.github.io/js/main.js"></script>
+<script src="https://blinkeye.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://blinkeye.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
+

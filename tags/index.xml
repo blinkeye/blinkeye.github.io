@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on blinkeye</title>
+    <link>https://blinkeye.github.io/tags/</link>
+    <description>Recent content in Tags on blinkeye</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 25 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blinkeye.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cloud</title>
+      <link>https://blinkeye.github.io/tags/cloud/</link>
+      <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/tags/cloud/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hetzner</title>
+      <link>https://blinkeye.github.io/tags/hetzner/</link>
+      <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/tags/hetzner/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https://blinkeye.github.io/tags/kubernetes/</link>
+      <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sysadmin</title>
+      <link>https://blinkeye.github.io/tags/sysadmin/</link>
+      <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/tags/sysadmin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>https://blinkeye.github.io/tags/docker/</link>
+      <pubDate>Wed, 29 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Canonical</title>
+      <link>https://blinkeye.github.io/tags/canonical/</link>
+      <pubDate>Fri, 24 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/tags/canonical/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Juju</title>
+      <link>https://blinkeye.github.io/tags/juju/</link>
+      <pubDate>Fri, 24 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/tags/juju/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ubuntu</title>
+      <link>https://blinkeye.github.io/tags/ubuntu/</link>
+      <pubDate>Fri, 24 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/tags/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hugo</title>
+      <link>https://blinkeye.github.io/tags/hugo/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Firewall</title>
+      <link>https://blinkeye.github.io/tags/firewall/</link>
+      <pubDate>Sat, 27 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/tags/firewall/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Clean-up your data - blinkeye</title>
+  <meta property="og:title" content="Clean-up your data" />
+  <meta name="twitter:title" content="Clean-up your data" />
+  <meta name="description" content="Deleting files permanently and securely">
+  <meta property="og:description" content="Deleting files permanently and securely">
+  <meta name="twitter:description" content="Deleting files permanently and securely">
+  <meta name="author" content="blinkeye"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "blinkeye",
+    
+    "url": "https:\/\/blinkeye.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/blinkeye.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/blinkeye.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/blinkeye.github.io\/post\/public\/2019-06-02-secure-wipe\/",
+          "name": "Clean up your data"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "blinkeye"
+  },
+  "headline": "Clean-up your data",
+  "description" : "",
+  "inLanguage" : "en",
+  "wordCount":  752 ,
+  "datePublished" : "2019-05-02T00:00:00",
+  "dateModified" : "2019-05-02T00:00:00",
+  "image" : "https:\/\/blinkeye.github.io\/img\/blinkeye.webp",
+  "keywords" : [ "Sysadmin" ],
+  "mainEntityOfPage" : "https:\/\/blinkeye.github.io\/post\/public\/2019-06-02-secure-wipe\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/blinkeye.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/blinkeye.github.io\/img\/blinkeye.webp",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="Clean-up your data" />
+<meta property="og:description" content="Deleting files permanently and securely">
+<meta property="og:image" content="https://blinkeye.github.io/img/trash.webp" />
+<meta property="og:url" content="https://blinkeye.github.io/post/public/2019-06-02-secure-wipe/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="blinkeye" />
+
+  <meta name="twitter:title" content="Clean-up your data" />
+  <meta name="twitter:description" content="Deleting files permanently and securely">
+  <meta name="twitter:image" content="https://blinkeye.github.io/img/trash.webp" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https://blinkeye.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://blinkeye.github.io/img/trash.webp" />
+  <meta name="twitter:image" content="https://blinkeye.github.io/img/trash.webp" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://blinkeye.github.io/post/public/2019-06-02-secure-wipe/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="blinkeye" />
+
+  <meta name="generator" content="Hugo 0.56.3" />
+  <link rel="alternate" href="https://blinkeye.github.io/index.xml" type="application/rss+xml" title="blinkeye"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://blinkeye.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://blinkeye.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://blinkeye.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blinkeye.github.io">blinkeye</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="blinkeye" href="https://blinkeye.github.io">
+            <img class="avatar-img" src="https://blinkeye.github.io/img/blinkeye.webp" alt="blinkeye" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>Clean-up your data</h1>
+              
+              
+              
+                
+                  <h2 class="post-subheading">Deleting files permanently and securely</h2>
+                
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on May 2, 2019
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;4&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;752&nbsp;words
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;blinkeye
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <h2 id="option-1-ata-secure-erase-of-disk">Option 1: ATA Secure erase of disk</h2>
+
+<p>If possible use <a href="https://ata.wiki.kernel.org/index.php/ATA_Secure_Erase">ATA Secure Erase</a> to delete your files securely, that is if you trust your harddisk manufacturer.
+The precondition to this is an <code>unfrozen</code> harddisk.</p>
+
+<p>Many BIOSes will protect your drives if you have a password set (security enabled) by issuing a SECURITY FREEZE command before booting an operating system. If your drive is frozen, and it has a password enabled, try removing the password using the BIOS and powering down the system to see if that disables the freeze. Otherwise you may need to use a different motherboard (with a different BIOS).</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ hdparm -I /dev/sda
+
+/dev/sda:
+
+ATA device, with non-removable media
+        Model Number:       INTEL SSDSC2BW240A4
+        Serial Number:      PHDA419500H02403GN
+        Firmware Revision:  DC32
+        Transport:          Serial, ATA8-AST, SATA <span class="m">1</span>.0a, SATA II Extensions, SATA Rev <span class="m">2</span>.5, SATA Rev <span class="m">2</span>.6, SATA Rev <span class="m">3</span>.0
+...
+Security: 
+        Master password revision <span class="nv">code</span> <span class="o">=</span> <span class="m">65534</span>
+                supported
+        not     enabled
+        not     locked
+                frozen
+        not     expired: security count
+                supported: enhanced erase
+        4min <span class="k">for</span> SECURITY ERASE UNIT. 2min <span class="k">for</span> ENHANCED SECURITY ERASE UNIT.
+...</code></pre></div>
+<p>In the above case the harddisk is frozen (Hetzner Root server).</p>
+
+<h2 id="option-2-secure-erase-of-disk-with-userspace-tools">Option 2: Secure erase of disk with userspace tools</h2>
+
+<p>Due to the (many) caveats of <a href="http://manpages.ubuntu.com/manpages/bionic/en/man1/shred.1.html">shred</a> and the rather un-maintained <a href="http://manpages.ubuntu.com/manpages/bionic/en/man1/wipe.1.html">wipe</a>
+it is recommended to use <a href="http://manpages.ubuntu.com/manpages/bionic/en/man1/scrub.1.html">scrub</a> instead:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ scrub --force --no-signature --pattern nnsa /dev/sdX
+
+scrub: using NNSA NAP-14.1-C patterns
+scrub: please verify that device size below is correct!
+scrub: scrubbing /dev/sda <span class="m">240057409536</span> bytes <span class="o">(</span>~223GB<span class="o">)</span>
+scrub: random  <span class="p">|</span>................................................<span class="p">|</span>
+scrub: random  <span class="p">|</span>................................................<span class="p">|</span>
+scrub: 0x00    <span class="p">|</span>................................................<span class="p">|</span>
+scrub: verify  <span class="p">|</span>................................................<span class="p">|</span></code></pre></div>
+<p>Parameter explanation for <a href="https://explainshell.com/explain?cmd=scrub+--force+--no-signature+--pattern+nnsa+%2Fdev%2FsdX">scrub</a>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">write patterns on disk/file
+
+-f, --force
+       Scrub even <span class="k">if</span> target contains signature indicating it has already been scrubbed.
+
+-S, --no-signature
+       Do  not  write  scrub signature.  Scrub will not be able to ascertain <span class="k">if</span> the disk has already been
+       scrubbed.
+
+-p, --pattern PATTERN
+       Select the patterns to write.  nnsa selects patterns compliant with NNSA Policy Letter NAP-14.1-C<span class="p">;</span>
+       dod  selects patterns compliant with DoD <span class="m">5220</span>.22-M<span class="p">;</span> bsi selects patterns recommended by the German
+       Center of Security in Information Technologies <span class="o">(</span>http://www.bsi.bund.de<span class="o">)</span><span class="p">;</span> old  selects  pre-version
+       <span class="m">1</span>.7  scrub  patterns<span class="p">;</span>  and  fastold is old without the random pass.  gutmann is a <span class="m">35</span>-pass sequence
+       described in Gutmann<span class="s1">&#39;s paper cited below.  See STANDARDS below  for  more  detail.   random  is  a
+</span><span class="s1">       single  random  pass.   random2  is  two random passes.  schneier is the method described by Bruce
+</span><span class="s1">       Schneier in &#39;&#39;Applied Cryptography&#39;&#39; (1996) consisting of one 0x00 pass, one 0xff pass,  and  five
+</span><span class="s1">       random  passes.   pfitzner7  is Roy Pfitzner&#39;</span>s <span class="m">7</span>-random-pass method.  pfitzner33 is Roy Pfitzner<span class="err">&#39;</span>s
+       <span class="m">33</span>-random-pass method.  usarmy is the US Army AR380-19 method consisting of  one  0x00  pass,  one
+       0xff pass, and a random pass.  Default: nnsa.</code></pre></div>
+<p>Additionally you may execute a destructive badblocks command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ badblocks -wsv /dev/sdX
+
+Checking <span class="k">for</span> bad blocks in read-write mode
+From block <span class="m">0</span> to <span class="m">234431063</span>
+Testing with pattern 0xaa: <span class="k">done</span>
+Reading and comparing: <span class="k">done</span>
+Testing with pattern 0x55: <span class="k">done</span>
+Reading and comparing: <span class="k">done</span>
+Testing with pattern 0xff: <span class="k">done</span>
+Reading and comparing: <span class="k">done</span>
+Testing with pattern 0x00: <span class="k">done</span>
+Reading and comparing: <span class="k">done</span>
+Pass completed, <span class="m">0</span> bad blocks found. <span class="o">(</span><span class="m">0</span>/0/0 errors<span class="o">)</span></code></pre></div>
+<p>Parameter explanation for <a href="https://explainshell.com/explain?cmd=badblocks+-wsv+%2Fdev%2FsdX">badblocks</a>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">search a device <span class="k">for</span> bad blocks
+
+-w     Use  write-mode  test.  With  this option, badblocks scans <span class="k">for</span> bad blocks by writing some patterns
+       <span class="o">(</span>0xaa, 0x55, 0xff, 0x00<span class="o">)</span> on every block of the device,  reading  every  block  and  comparing  the
+       contents.  This option may not be combined with the -n option, as they are mutually exclusive.
+
+-s     Show  the progress of the scan by writing out rough percentage completion of the current badblocks
+       pass over the disk.  Note that badblocks may <span class="k">do</span> multiple <span class="nb">test</span> passes over the disk, in  particular
+       <span class="k">if</span> the -p or -w option is requested by the user.
+       
+-v     Verbose mode.  Will write the number of <span class="nb">read</span> errors, write errors and data- corruptions to stderr.</code></pre></div>
+<h2 id="option-3-secure-erase-of-directories-files-with-userspace-tools">Option 3: Secure erase of directories/files with userspace tools</h2>
+
+<p>If you cannot shred the whole disk (for example a NFS share) use scrub:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> /to/directory/to/wipe
+$ scrub --freespace dump --force --no-signature --remove --pattern nnsa</code></pre></div>
+<p>The <code>-X / --freespace</code> command tells scrub to create a directory <code>dump</code> (in this case) and fill it with files until write returns ENOSPC (file system full), then scrub the files as usual.</p>
+
+<p>Shred is only a last resort:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ find &lt;directory&gt; -depth -type f -exec shred -v -n3 -z -u <span class="o">{}</span> <span class="se">\;</span></code></pre></div>
+<p>Parameter explanation for <a href="https://explainshell.com/explain?cmd=find+%3Cdirectory%3E+-depth+-type+f+-exec+shred+-v+-n3+-z+-u+%7B%7D+%5C%3B">shred</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">overwrite a file to hide its contents, and optionally delete it
+
+-v, --verbose
+       show progress
+
+-n, --iterations<span class="o">=</span>N
+       overwrite N <span class="nb">times</span> instead of the default <span class="o">(</span><span class="m">3</span><span class="o">)</span>
+       
+-z, --zero
+       add a final overwrite with zeros to hide shredding</code></pre></div>
+<h3 id="references">References</h3>
+
+<ul>
+<li><a href="https://ata.wiki.kernel.org/index.php/ATA_Secure_Erase">https://ata.wiki.kernel.org/index.php/ATA_Secure_Erase</a></li>
+<li><a href="https://wiki.archlinux.org/index.php/Securely_wipe_disk">https://wiki.archlinux.org/index.php/Securely_wipe_disk</a></li>
+<li><a href="https://stackoverflow.com/questions/10377393/deleting-files-permanently-and-securely-on-centos">https://stackoverflow.com/questions/10377393/deleting-files-permanently-and-securely-on-centos</a></li>
+<li><a href="https://unix.stackexchange.com/questions/27027/how-do-i-recursively-shred-an-entire-directory-tree">https://unix.stackexchange.com/questions/27027/how-do-i-recursively-shred-an-entire-directory-tree</a></li>
+<li><a href="https://askubuntu.com/questions/17640/how-can-i-securely-erase-a-hard-drive">https://askubuntu.com/questions/17640/how-can-i-securely-erase-a-hard-drive</a></li>
+</ul>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://blinkeye.github.io/tags/sysadmin/">Sysadmin</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://blinkeye.github.io/post/public/2019-05-01-hugo/" data-toggle="tooltip" data-placement="top" title="Hugo Website on Github">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://blinkeye.github.io/post/public/2019-05-30-kubernetes-dashboard/" data-toggle="tooltip" data-placement="top" title="Kubernetes Dashboard">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/blinkeye" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://gitlab.com/blinkeye" title="GitLab">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-gitlab fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="blog.blinkeye.ch">blinkeye</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://blinkeye.github.io">blinkeye</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.56.3</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://blinkeye.github.io/js/main.js"></script>
+<script src="https://blinkeye.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://blinkeye.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
+

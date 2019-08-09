@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hetzner on blinkeye</title>
+    <link>https://blinkeye.github.io/tags/hetzner/</link>
+    <description>Recent content in Hetzner on blinkeye</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 25 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blinkeye.github.io/tags/hetzner/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>K8s on the Hetzner Cloud</title>
+      <link>https://blinkeye.github.io/post/public/2019-07-25-hetzner-k8s-with-private-network/</link>
+      <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/post/public/2019-07-25-hetzner-k8s-with-private-network/</guid>
+      <description>&lt;p&gt;Depending on how fast you can type (or copy and paste) you&amp;rsquo;ll get a publicly available Kubernetes multi-node cluster up and running in less than 15minutes.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

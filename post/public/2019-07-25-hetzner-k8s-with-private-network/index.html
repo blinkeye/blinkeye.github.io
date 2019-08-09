@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" itemscope itemtype="http://schema.org/WebPage">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>K8s on the Hetzner Cloud - blinkeye</title>
+  <meta property="og:title" content="K8s on the Hetzner Cloud" />
+  <meta name="twitter:title" content="K8s on the Hetzner Cloud" />
+  <meta name="description" content="Public Kubernetes Multi-Node Cluster in less than 15minutes">
+  <meta property="og:description" content="Public Kubernetes Multi-Node Cluster in less than 15minutes">
+  <meta name="twitter:description" content="Public Kubernetes Multi-Node Cluster in less than 15minutes">
+  <meta name="author" content="blinkeye"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "blinkeye",
+    
+    "url": "https:\/\/blinkeye.github.io"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https:\/\/blinkeye.github.io"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https:\/\/blinkeye.github.io",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https:\/\/blinkeye.github.io\/post\/public\/2019-07-25-hetzner-k8s-with-private-network\/",
+          "name": "K8s on the hetzner cloud"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "blinkeye"
+  },
+  "headline": "K8s on the Hetzner Cloud",
+  "description" : "Depending on how fast you can type (or copy and paste) you\x26rsquo;ll get a publicly available Kubernetes multi-node cluster up and running in less than 15minutes.\n",
+  "inLanguage" : "en",
+  "wordCount":  2249 ,
+  "datePublished" : "2019-07-25T00:00:00",
+  "dateModified" : "2019-07-25T00:00:00",
+  "image" : "https:\/\/blinkeye.github.io\/img\/blinkeye.webp",
+  "keywords" : [ "Kubernetes, Cloud, Hetzner" ],
+  "mainEntityOfPage" : "https:\/\/blinkeye.github.io\/post\/public\/2019-07-25-hetzner-k8s-with-private-network\/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https:\/\/blinkeye.github.io",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https:\/\/blinkeye.github.io\/img\/blinkeye.webp",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="K8s on the Hetzner Cloud" />
+<meta property="og:description" content="Public Kubernetes Multi-Node Cluster in less than 15minutes">
+<meta property="og:image" content="https://blinkeye.github.io/img/rocket.webp" />
+<meta property="og:url" content="https://blinkeye.github.io/post/public/2019-07-25-hetzner-k8s-with-private-network/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="blinkeye" />
+
+  <meta name="twitter:title" content="K8s on the Hetzner Cloud" />
+  <meta name="twitter:description" content="Public Kubernetes Multi-Node Cluster in less than 15minutes">
+  <meta name="twitter:image" content="https://blinkeye.github.io/img/rocket.webp" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https://blinkeye.github.io/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://blinkeye.github.io/img/rocket.webp" />
+  <meta name="twitter:image" content="https://blinkeye.github.io/img/rocket.webp" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://blinkeye.github.io/post/public/2019-07-25-hetzner-k8s-with-private-network/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="blinkeye" />
+
+  <meta name="generator" content="Hugo 0.56.3" />
+  <link rel="alternate" href="https://blinkeye.github.io/index.xml" type="application/rss+xml" title="blinkeye"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"><link rel="stylesheet" href="https://blinkeye.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://blinkeye.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://blinkeye.github.io/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blinkeye.github.io">blinkeye</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="blinkeye" href="https://blinkeye.github.io">
+            <img class="avatar-img" src="https://blinkeye.github.io/img/blinkeye.webp" alt="blinkeye" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>K8s on the Hetzner Cloud</h1>
+              
+              
+              
+                
+                  <h2 class="post-subheading">Public Kubernetes Multi-Node Cluster in less than 15minutes</h2>
+                
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;Posted on July 25, 2019
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-clock"></i>&nbsp;11&nbsp;minutes
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-book"></i>&nbsp;2249&nbsp;words
+  
+  
+    &nbsp;|&nbsp;<i class="fas fa-user"></i>&nbsp;blinkeye
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>Depending on how fast you can type (or copy and paste) you&rsquo;ll get a publicly available Kubernetes multi-node cluster up and running in less than 15minutes.</p>
+
+<h2 id="costs">Costs</h2>
+
+<p>If you follow this tutorial, you&rsquo;ll create two <code>CX11</code> hosts with the following specs:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="m">1</span>	vCPU
+<span class="m">2</span> GB	RAM
+<span class="m">20</span> GB	SSD
+<span class="m">20</span> TB	TRAFFIC</code></pre></div>
+<p>and setup a Kubernetes multi-node cluster with the latest stable version <a href="https://github.com/kubernetes/kubernetes/releases">v1.15.1</a>.</p>
+
+<p>The current price for a Hetzner <code>cx11</code> server is 0,00431€/h. This means you&rsquo;ll get charged for about 0,2€ daily for two nodes. The monthly fee for two such servers is 5,36€.
+You can delete your servers anytime. There&rsquo;s no minimal renting period or setup charge.</p>
+
+<h2 id="prerequisite-hetzner-cloud-project">Prerequisite: Hetzner Cloud project</h2>
+
+<p>Log in to <a href="https://console.hetzner.cloud">https://console.hetzner.cloud</a>. Create a new project and an api token to be used later on:</p>
+
+<p>
+<link rel="stylesheet" href="/css/hugo-easy-gallery.css" />
+<div class="box" style="max-width:30%">
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="/img/hetzner/add_api_token.webp" alt="/img/hetzner/add_api_token.webp"/>
+    </div>
+    <a href="/img/hetzner/add_api_token.webp" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+
+
+<div class="box" style="max-width:30%">
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="/img/hetzner/create_api_token.webp" alt="/img/hetzner/create_api_token.webp"/>
+    </div>
+    <a href="/img/hetzner/create_api_token.webp" itemprop="contentUrl"></a>
+  </figure>
+</div>
+
+
+
+<div class="box" style="max-width:30%">
+  <figure  itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+    <div class="img">
+      <img itemprop="thumbnail" src="/img/hetzner/generated_api_token.webp" alt="/img/hetzner/generated_api_token.webp"/>
+    </div>
+    <a href="/img/hetzner/generated_api_token.webp" itemprop="contentUrl"></a>
+  </figure>
+</div>
+</p>
+
+<p><strong>NOTE</strong>: you need to copy/save the api token, it cannot be retrieved again.</p>
+
+<h2 id="prerequisite-hetzner-cli-hcloud">Prerequisite: Hetzner CLI hcloud</h2>
+
+<p><strong>NOTE</strong>: everything we do here with the <code>hcloud</code> CLI can be done within the <a href="https://console.hetzner.cloud">Hetzner Cloud GUI</a> as well. Still, for automation and replication the CLI is the preferred way.</p>
+
+<p>We&rsquo;ll be using a <a href="https://www.hetzner.com/news/07-19-networks-beta/">beta feature of the Hetzner Cloud</a> to create a private network between our servers.
+Without a private network:</p>
+
+<ul>
+<li>data between your nodes is not private (e.g. publicly routed)</li>
+<li>network traffic between your nodes is routed quite a lot</li>
+<li>you get less-than-optimal network performance</li>
+</ul>
+
+<p>See <a href="#hetzner-private-network">this section</a> for a comparison of network roundtrip times and latency w/o a private network.</p>
+
+<p>To use the private network feature you need a not-yet-released <a href="https://github.com/hetznercloud/cli">Hetzner CLI hcloud</a> version <code>&gt;1.13.0</code>.
+To build the <code>hcloud</code> executable you need <a href="https://golang.org/doc/install">Go</a>.</p>
+
+<p>For Ubuntu the recommended way is to install the <a href="https://snapcraft.io/go">Snap package</a>:</p>
+<div class="highlight"><pre class="chroma">$ sudo snap install --classic --channel=1.12/stable go</pre></div>
+<p>then build and install <code>hcloud</code> with:</p>
+<div class="highlight"><pre class="chroma">$ go get -u github.com/hetznercloud/cli/cmd/hcloud</pre></div>
+<p>The hcloud executable is now available in <code>~/go/bin/hcloud</code>.</p>
+
+<p>For convenience update your PATH and enable autocompletion:</p>
+<div class="highlight"><pre class="chroma">$ export PATH=&#34;$PATH:$HOME/go/bin:&#34;
+$ source &lt;(hcloud completion bash)</pre></div>
+<p>Now switch the context to your Hetzner project:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ hcloud context create braindump
+
+Token: <span class="o">&lt;&lt;&lt;</span>&lt;enter the api token created with the Hetner Cloud GUI
+Context braindump created and activated</code></pre></div>
+<p>Next, register a ssh-key which allows you to log in to your cloud servers. If you don&rsquo;t have an ssh-key available or want to create a new one:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t ed25519 -f hetzner-cloud</code></pre></div>
+<p>and then register the ssh-key:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ hcloud ssh-key create --name <span class="s2">&#34;hetzner-cloud&#34;</span> --public-key-from-file hetzner-cloud.pub</code></pre></div>
+<p>Next, it&rsquo;s time to create your servers. The available server types are:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ hcloud server-type list
+
+ID   NAME        CORES   MEMORY     DISK     STORAGE TYPE
+<span class="m">1</span>    cx11        <span class="m">1</span>       <span class="m">2</span>.0 GB     <span class="m">20</span> GB    <span class="nb">local</span>
+<span class="m">2</span>    cx11-ceph   <span class="m">1</span>       <span class="m">2</span>.0 GB     <span class="m">20</span> GB    network
+<span class="m">3</span>    cx21        <span class="m">2</span>       <span class="m">4</span>.0 GB     <span class="m">40</span> GB    <span class="nb">local</span>
+<span class="m">4</span>    cx21-ceph   <span class="m">2</span>       <span class="m">4</span>.0 GB     <span class="m">40</span> GB    network
+<span class="m">5</span>    cx31        <span class="m">2</span>       <span class="m">8</span>.0 GB     <span class="m">80</span> GB    <span class="nb">local</span>
+<span class="m">6</span>    cx31-ceph   <span class="m">2</span>       <span class="m">8</span>.0 GB     <span class="m">80</span> GB    network
+<span class="m">7</span>    cx41        <span class="m">4</span>       <span class="m">16</span>.0 GB    <span class="m">160</span> GB   <span class="nb">local</span>
+<span class="m">8</span>    cx41-ceph   <span class="m">4</span>       <span class="m">16</span>.0 GB    <span class="m">160</span> GB   network
+<span class="m">9</span>    cx51        <span class="m">8</span>       <span class="m">32</span>.0 GB    <span class="m">240</span> GB   <span class="nb">local</span>
+<span class="m">10</span>   cx51-ceph   <span class="m">8</span>       <span class="m">32</span>.0 GB    <span class="m">240</span> GB   network
+<span class="m">11</span>   ccx11       <span class="m">2</span>       <span class="m">8</span>.0 GB     <span class="m">80</span> GB    <span class="nb">local</span>
+<span class="m">12</span>   ccx21       <span class="m">4</span>       <span class="m">16</span>.0 GB    <span class="m">160</span> GB   <span class="nb">local</span>
+<span class="m">13</span>   ccx31       <span class="m">8</span>       <span class="m">32</span>.0 GB    <span class="m">240</span> GB   <span class="nb">local</span>
+<span class="m">14</span>   ccx41       <span class="m">16</span>      <span class="m">64</span>.0 GB    <span class="m">360</span> GB   <span class="nb">local</span>
+<span class="m">15</span>   ccx51       <span class="m">32</span>      <span class="m">128</span>.0 GB   <span class="m">540</span> GB   local</code></pre></div>
+<p>Create your first server (which will be the K8s master node):</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ hcloud server create --name node-1 --type cx11 --image ubuntu-18.04 --ssh-key<span class="o">=</span>hetzner-cloud
+
+Waiting <span class="k">for</span> server <span class="m">3021616</span> to have started... <span class="k">done</span>
+Server <span class="m">3021616</span> created
+IPv4: <span class="m">195</span>.201.229.18</code></pre></div>
+<p>Log in with:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh -i hetzner-cloud.pub root@195.201.229.18</code></pre></div>
+<p>Create your second server (which will be the first K8s worker node):</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ hcloud server create --name node-2 --type cx11 --image ubuntu-18.04 --ssh-key<span class="o">=</span>hetzner-cloud
+
+Waiting <span class="k">for</span> server <span class="m">3021710</span> to have started... <span class="k">done</span>
+Server <span class="m">3021710</span> created
+IPv4: <span class="m">116</span>.203.130.129</code></pre></div>
+<p>Log in with:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh -i hetzner-cloud.pub root@116.203.130.129</code></pre></div>
+<h3 id="create-a-private-hetzner-network">Create a private Hetzner network</h3>
+
+<p>See <a href="https://community.hetzner.com/tutorials/hcloud-networks-basic">Hetzner Cloud: Networks</a> for a general overview of the private network features.</p>
+
+<p>Create a private network for Kubernetes:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ hcloud network create --name kubernetes --ip-range <span class="m">192</span>.168.0.0/16
+$ hcloud network add-subnet kubernetes --network-zone eu-central --type server --ip-range <span class="m">192</span>.168.0.0/24
+$ hcloud server attach-to-network node-1 --network kubernetes <span class="o">[</span>--ip <span class="m">192</span>.168.0.2<span class="o">]</span>
+$ hcloud server attach-to-network node-2 --network kubernetes <span class="o">[</span>--ip <span class="m">192</span>.168.0.3<span class="o">]</span></code></pre></div>
+<p>The <code>--ip</code> argument is optional. This will add an additional <code>ensX</code> interface to your Hetzner Cloud servers and allow for direct and private network communication.</p>
+
+<h2 id="os-preparation">OS preparation</h2>
+
+<p>Currently you&rsquo;re probably logged-in to your cloud server as root. Create a regular user and allow your ssh-key to authenticate:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">export</span> <span class="nv">USERNAME</span><span class="o">=</span>your-user-name
+$ useradd -m -G sys,adm,sudo,docker -s /bin/bash <span class="nv">$USERNAME</span>
+$ passwd <span class="nv">$USERNAME</span>
+$ mkdir /home/<span class="nv">$USERNAME</span>/.ssh
+$ cat .ssh/authorized_keys &gt; /home/<span class="nv">$USERNAME</span>/.ssh/authorized_keys
+$ chown <span class="nv">$USERNAME</span>.<span class="nv">$USERNAME</span> -R /home/<span class="nv">$USERNAME</span>/.ssh</code></pre></div>
+<p>This allows you to log in to your server as a regular user with the ssh-key you created or used above.</p>
+
+<p>For the following steps work as a regular user. Log out and log back in as a regular user:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh -i hetzner-cloud.pub your-user-name@...</code></pre></div>
+<p>Then, on both nodes install docker:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo apt update <span class="o">&amp;&amp;</span> sudo apt upgrade -y <span class="o">&amp;&amp;</span> sudo apt install docker.io -y
+$ sudo systemctl <span class="nb">enable</span> docker.service</code></pre></div>
+<p>and, still on both nodes, add the Kubernetes apt repository and install the necessary packages:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># install kubeadm</span>
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg <span class="p">|</span> sudo apt-key add
+sudo apt-add-repository <span class="s2">&#34;deb http://apt.kubernetes.io/ kubernetes-xenial main&#34;</span>
+sudo apt install kubeadm -y</code></pre></div>
+<p>That&rsquo;s it, you&rsquo;re now ready to setup Kubernetes.</p>
+
+<h2 id="kubernetes-setup-master-node">Kubernetes Setup Master Node</h2>
+
+<p><strong>NOTE</strong>: see <a href="#kubernetes-reset">Kubernetes Reset</a> if you need to start from scratch.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo kubeadm init --apiserver-advertise-address <span class="m">192</span>.168.0.2 <span class="se">\
+</span><span class="se"></span>    --service-cidr <span class="m">10</span>.96.0.0/16 <span class="se">\
+</span><span class="se"></span>    --pod-network-cidr <span class="m">10</span>.244.0.0/16 <span class="se">\
+</span><span class="se"></span>    --ignore-preflight-errors<span class="o">=</span>NumCPU</code></pre></div>
+<p><details><summary>Command output (click to expand)</summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">sudo kubeadm init --apiserver-advertise-address <span class="m">192</span>.168.0.2 <span class="se">\
+</span><span class="se"></span>    --service-cidr <span class="m">10</span>.96.0.0/16 <span class="se">\
+</span><span class="se"></span>    --pod-network-cidr <span class="m">10</span>.244.0.0/16 <span class="se">\
+</span><span class="se"></span>    --ignore-preflight-errors<span class="o">=</span>NumCPU
+
+<span class="o">[</span>init<span class="o">]</span> Using Kubernetes version: v1.15.1
+<span class="o">[</span>preflight<span class="o">]</span> Running pre-flight checks
+	<span class="o">[</span>WARNING NumCPU<span class="o">]</span>: the number of available CPUs <span class="m">1</span> is less than the required <span class="m">2</span>
+	<span class="o">[</span>WARNING IsDockerSystemdCheck<span class="o">]</span>: detected <span class="s2">&#34;cgroupfs&#34;</span> as the Docker cgroup driver. The recommended driver is <span class="s2">&#34;systemd&#34;</span>. Please follow the guide at https://kubernetes.io/docs/setup/cri/
+<span class="o">[</span>preflight<span class="o">]</span> Pulling images required <span class="k">for</span> setting up a Kubernetes cluster
+<span class="o">[</span>preflight<span class="o">]</span> This might take a minute or two, depending on the speed of your internet connection
+<span class="o">[</span>preflight<span class="o">]</span> You can also perform this action in beforehand using <span class="s1">&#39;kubeadm config images pull&#39;</span>
+<span class="o">[</span>kubelet-start<span class="o">]</span> Writing kubelet environment file with flags to file <span class="s2">&#34;/var/lib/kubelet/kubeadm-flags.env&#34;</span>
+<span class="o">[</span>kubelet-start<span class="o">]</span> Writing kubelet configuration to file <span class="s2">&#34;/var/lib/kubelet/config.yaml&#34;</span>
+<span class="o">[</span>kubelet-start<span class="o">]</span> Activating the kubelet service
+<span class="o">[</span>certs<span class="o">]</span> Using certificateDir folder <span class="s2">&#34;/etc/kubernetes/pki&#34;</span>
+<span class="o">[</span>certs<span class="o">]</span> Generating <span class="s2">&#34;front-proxy-ca&#34;</span> certificate and key
+<span class="o">[</span>certs<span class="o">]</span> Generating <span class="s2">&#34;front-proxy-client&#34;</span> certificate and key
+<span class="o">[</span>certs<span class="o">]</span> Generating <span class="s2">&#34;etcd/ca&#34;</span> certificate and key
+<span class="o">[</span>certs<span class="o">]</span> Generating <span class="s2">&#34;etcd/server&#34;</span> certificate and key
+<span class="o">[</span>certs<span class="o">]</span> etcd/server serving cert is signed <span class="k">for</span> DNS names <span class="o">[</span>node-1 localhost<span class="o">]</span> and IPs <span class="o">[</span><span class="m">192</span>.168.0.2 <span class="m">127</span>.0.0.1 ::1<span class="o">]</span>
+<span class="o">[</span>certs<span class="o">]</span> Generating <span class="s2">&#34;etcd/peer&#34;</span> certificate and key
+<span class="o">[</span>certs<span class="o">]</span> etcd/peer serving cert is signed <span class="k">for</span> DNS names <span class="o">[</span>node-1 localhost<span class="o">]</span> and IPs <span class="o">[</span><span class="m">192</span>.168.0.2 <span class="m">127</span>.0.0.1 ::1<span class="o">]</span>
+<span class="o">[</span>certs<span class="o">]</span> Generating <span class="s2">&#34;etcd/healthcheck-client&#34;</span> certificate and key
+<span class="o">[</span>certs<span class="o">]</span> Generating <span class="s2">&#34;apiserver-etcd-client&#34;</span> certificate and key
+<span class="o">[</span>certs<span class="o">]</span> Generating <span class="s2">&#34;ca&#34;</span> certificate and key
+<span class="o">[</span>certs<span class="o">]</span> Generating <span class="s2">&#34;apiserver&#34;</span> certificate and key
+<span class="o">[</span>certs<span class="o">]</span> apiserver serving cert is signed <span class="k">for</span> DNS names <span class="o">[</span>node-1 kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local<span class="o">]</span> and IPs <span class="o">[</span><span class="m">10</span>.96.0.1 <span class="m">192</span>.168.0.2<span class="o">]</span>
+<span class="o">[</span>certs<span class="o">]</span> Generating <span class="s2">&#34;apiserver-kubelet-client&#34;</span> certificate and key
+<span class="o">[</span>certs<span class="o">]</span> Generating <span class="s2">&#34;sa&#34;</span> key and public key
+<span class="o">[</span>kubeconfig<span class="o">]</span> Using kubeconfig folder <span class="s2">&#34;/etc/kubernetes&#34;</span>
+<span class="o">[</span>kubeconfig<span class="o">]</span> Writing <span class="s2">&#34;admin.conf&#34;</span> kubeconfig file
+<span class="o">[</span>kubeconfig<span class="o">]</span> Writing <span class="s2">&#34;kubelet.conf&#34;</span> kubeconfig file
+<span class="o">[</span>kubeconfig<span class="o">]</span> Writing <span class="s2">&#34;controller-manager.conf&#34;</span> kubeconfig file
+<span class="o">[</span>kubeconfig<span class="o">]</span> Writing <span class="s2">&#34;scheduler.conf&#34;</span> kubeconfig file
+<span class="o">[</span>control-plane<span class="o">]</span> Using manifest folder <span class="s2">&#34;/etc/kubernetes/manifests&#34;</span>
+<span class="o">[</span>control-plane<span class="o">]</span> Creating static Pod manifest <span class="k">for</span> <span class="s2">&#34;kube-apiserver&#34;</span>
+<span class="o">[</span>control-plane<span class="o">]</span> Creating static Pod manifest <span class="k">for</span> <span class="s2">&#34;kube-controller-manager&#34;</span>
+<span class="o">[</span>control-plane<span class="o">]</span> Creating static Pod manifest <span class="k">for</span> <span class="s2">&#34;kube-scheduler&#34;</span>
+<span class="o">[</span>etcd<span class="o">]</span> Creating static Pod manifest <span class="k">for</span> <span class="nb">local</span> etcd in <span class="s2">&#34;/etc/kubernetes/manifests&#34;</span>
+<span class="o">[</span>wait-control-plane<span class="o">]</span> Waiting <span class="k">for</span> the kubelet to boot up the control plane as static Pods from directory <span class="s2">&#34;/etc/kubernetes/manifests&#34;</span>. This can take up to 4m0s
+<span class="o">[</span>apiclient<span class="o">]</span> All control plane components are healthy after <span class="m">24</span>.012671 seconds
+<span class="o">[</span>upload-config<span class="o">]</span> Storing the configuration used in ConfigMap <span class="s2">&#34;kubeadm-config&#34;</span> in the <span class="s2">&#34;kube-system&#34;</span> Namespace
+<span class="o">[</span>kubelet<span class="o">]</span> Creating a ConfigMap <span class="s2">&#34;kubelet-config-1.15&#34;</span> in namespace kube-system with the configuration <span class="k">for</span> the kubelets in the cluster
+<span class="o">[</span>upload-certs<span class="o">]</span> Skipping phase. Please see --upload-certs
+<span class="o">[</span>mark-control-plane<span class="o">]</span> Marking the node node-1 as control-plane by adding the label <span class="s2">&#34;node-role.kubernetes.io/master=&#39;&#39;&#34;</span>
+<span class="o">[</span>mark-control-plane<span class="o">]</span> Marking the node node-1 as control-plane by adding the taints <span class="o">[</span>node-role.kubernetes.io/master:NoSchedule<span class="o">]</span>
+<span class="o">[</span>bootstrap-token<span class="o">]</span> Using token: qsp66g.so31qdny4dhc8cwk
+<span class="o">[</span>bootstrap-token<span class="o">]</span> Configuring bootstrap tokens, cluster-info ConfigMap, RBAC Roles
+<span class="o">[</span>bootstrap-token<span class="o">]</span> configured RBAC rules to allow Node Bootstrap tokens to post CSRs in order <span class="k">for</span> nodes to get long term certificate credentials
+<span class="o">[</span>bootstrap-token<span class="o">]</span> configured RBAC rules to allow the csrapprover controller automatically approve CSRs from a Node Bootstrap Token
+<span class="o">[</span>bootstrap-token<span class="o">]</span> configured RBAC rules to allow certificate rotation <span class="k">for</span> all node client certificates in the cluster
+<span class="o">[</span>bootstrap-token<span class="o">]</span> Creating the <span class="s2">&#34;cluster-info&#34;</span> ConfigMap in the <span class="s2">&#34;kube-public&#34;</span> namespace
+<span class="o">[</span>addons<span class="o">]</span> Applied essential addon: CoreDNS
+<span class="o">[</span>addons<span class="o">]</span> Applied essential addon: kube-proxy
+
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p <span class="nv">$HOME</span>/.kube
+  sudo cp -i /etc/kubernetes/admin.conf <span class="nv">$HOME</span>/.kube/config
+  sudo chown <span class="k">$(</span>id -u<span class="k">)</span>:<span class="k">$(</span>id -g<span class="k">)</span> <span class="nv">$HOME</span>/.kube/config
+
+You should now deploy a pod network to the cluster.
+Run <span class="s2">&#34;kubectl apply -f [podnetwork].yaml&#34;</span> with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join <span class="m">192</span>.168.0.2:6443 --token qsp66g.so31qdny4dhc8cwk <span class="se">\
+</span><span class="se"></span>    --discovery-token-ca-cert-hash sha256:04d92fb2c05660ef5eb1f0cc15e069521caa22320649c510e4902c61258ba2c1 </code></pre></div>
+<p></details></p>
+
+<p>Next, as a regular user (<strong>not</strong> root) create the configuration to use <code>kubectl</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir -p <span class="nv">$HOME</span>/.kube
+$ sudo cp -i /etc/kubernetes/admin.conf <span class="nv">$HOME</span>/.kube/config
+$ sudo chown <span class="k">$(</span>id -u<span class="k">)</span>:<span class="k">$(</span>id -g<span class="k">)</span> <span class="nv">$HOME</span>/.kube/config</code></pre></div>
+<p>Now you can install a container network interface (CNI) like weave:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ kubectl apply -f <span class="s2">&#34;https://cloud.weave.works/k8s/net?k8s-version=</span><span class="k">$(</span>kubectl version <span class="p">|</span> base64 <span class="p">|</span> tr -d <span class="s1">&#39;\n&#39;</span><span class="k">)</span><span class="s2">&#34;</span></code></pre></div>
+<p>You&rsquo;re now ready to add additional nodes!</p>
+
+<h2 id="kubernetes-setup-worker-node-s">Kubernetes Setup Worker Node(s)</h2>
+
+<p><strong>NOTE</strong>: see <a href="#kubernetes-reset">Kubernetes Reset</a> if you need to start from scratch.</p>
+
+<p>Get the join command (execute this command on your master node):</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo kubeadm token create --print-join-command</code></pre></div>
+<p>Take  to command and execute it on your worker-node:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo kubeadm join <span class="m">192</span>.168.0.2:6443 --token qsp66g.so31qdny4dhc8cwk <span class="se">\
+</span><span class="se"></span>   --discovery-token-ca-cert-hash sha256:04d92fb2c05660ef5eb1f0cc15e069521caa22320649c510e4902c61258ba2c1  </code></pre></div>
+<p><details><summary>Command output (click to expand)</summary></p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo kubeadm join <span class="m">192</span>.168.0.2:6443 --token qsp66g.so31qdny4dhc8cwk <span class="se">\
+</span><span class="se"></span>   --discovery-token-ca-cert-hash sha256:04d92fb2c05660ef5eb1f0cc15e069521caa22320649c510e4902c61258ba2c1 
+ 
+<span class="o">[</span>preflight<span class="o">]</span> Running pre-flight checks
+	<span class="o">[</span>WARNING IsDockerSystemdCheck<span class="o">]</span>: detected <span class="s2">&#34;cgroupfs&#34;</span> as the Docker cgroup driver. The recommended driver is <span class="s2">&#34;systemd&#34;</span>. Please follow the guide at https://kubernetes.io/docs/setup/cri/
+<span class="o">[</span>preflight<span class="o">]</span> Reading configuration from the cluster...
+<span class="o">[</span>preflight<span class="o">]</span> FYI: You can look at this config file with <span class="s1">&#39;kubectl -n kube-system get cm kubeadm-config -oyaml&#39;</span>
+<span class="o">[</span>kubelet-start<span class="o">]</span> Downloading configuration <span class="k">for</span> the kubelet from the <span class="s2">&#34;kubelet-config-1.15&#34;</span> ConfigMap in the kube-system namespace
+<span class="o">[</span>kubelet-start<span class="o">]</span> Writing kubelet configuration to file <span class="s2">&#34;/var/lib/kubelet/config.yaml&#34;</span>
+<span class="o">[</span>kubelet-start<span class="o">]</span> Writing kubelet environment file with flags to file <span class="s2">&#34;/var/lib/kubelet/kubeadm-flags.env&#34;</span>
+<span class="o">[</span>kubelet-start<span class="o">]</span> Activating the kubelet service
+<span class="o">[</span>kubelet-start<span class="o">]</span> Waiting <span class="k">for</span> the kubelet to perform the TLS Bootstrap...
+
+This node has joined the cluster:
+* Certificate signing request was sent to apiserver and a response was received.
+* The Kubelet was informed of the new secure connection details.
+
+Run <span class="s1">&#39;kubectl get nodes&#39;</span> on the control-plane to see this node join the cluster.</code></pre></div>
+<p></details></p>
+
+<h2 id="kubernetes-reset">Kubernetes Reset</h2>
+
+<p>If ever you need to start from the beginning you can use <a href="https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-reset/">kubeadm reset</a>
+ followed by a cleanup of iptables rules and a restart of docker (to re-add the removed iptables rules):</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ sudo kubeadm reset
+$ sudo iptables -F <span class="o">&amp;&amp;</span> sudo iptables -t nat -F <span class="o">&amp;&amp;</span> sudo iptables -t mangle -F <span class="o">&amp;&amp;</span> sudo iptables -X
+$ sudo systemctl restart docker</code></pre></div>
+<h2 id="hetzner-private-vs-public-network">Hetzner Private vs. Public Network</h2>
+
+<p>Let&rsquo;s look at an example (e.g. two Hetzner Cloud Nodes created following this very tutorial):</p>
+
+<ul>
+<li>node-1: 195.201.229.18  (Public IP), 192.168.0.2 (Private IP)</li>
+<li>node-2: 116.203.130.129 (Public IP), 192.168.0.3 (Private IP)</li>
+</ul>
+
+<p>Execute <code>mtr</code>, a network diagnostic tool to analyze the amount of hops and roundtrip time:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mtr <span class="m">116</span>.203.130.129 -r -c <span class="m">30</span> -n
+
+Start: <span class="m">2019</span>-07-26T16:02:45+0200
+HOST: node-1                      Loss%   Snt   Last   Avg  Best  Wrst StDev
+  <span class="m">1</span>.<span class="p">|</span>-- <span class="m">172</span>.31.1.1                 <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">0</span>.2   <span class="m">0</span>.3   <span class="m">0</span>.2   <span class="m">0</span>.6   <span class="m">0</span>.1
+  <span class="m">2</span>.<span class="p">|</span>-- <span class="m">195</span>.201.64.84              <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">2</span>.3   <span class="m">0</span>.4   <span class="m">0</span>.2   <span class="m">2</span>.3   <span class="m">0</span>.4
+  <span class="m">3</span>.<span class="p">|</span>-- <span class="m">195</span>.201.64.65              <span class="m">0</span>.0%    <span class="m">30</span>   <span class="m">27</span>.6  <span class="m">31</span>.2  <span class="m">14</span>.7  <span class="m">65</span>.5   <span class="m">9</span>.2
+  <span class="m">4</span>.<span class="p">|</span>-- <span class="m">85</span>.10.247.145              <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">4</span>.6   <span class="m">2</span>.0   <span class="m">0</span>.9  <span class="m">12</span>.9   <span class="m">2</span>.5
+  <span class="m">5</span>.<span class="p">|</span>-- <span class="m">85</span>.10.237.194              <span class="m">0</span>.0%    <span class="m">30</span>   <span class="m">18</span>.3  <span class="m">17</span>.1  <span class="m">10</span>.2  <span class="m">26</span>.7   <span class="m">3</span>.9
+  <span class="m">6</span>.<span class="p">|</span>-- <span class="m">88</span>.99.159.74               <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">0</span>.4   <span class="m">0</span>.5   <span class="m">0</span>.3   <span class="m">3</span>.4   <span class="m">0</span>.6
+  <span class="m">7</span>.<span class="p">|</span>-- ???                       <span class="m">100</span>.0    <span class="m">30</span>    <span class="m">0</span>.0   <span class="m">0</span>.0   <span class="m">0</span>.0   <span class="m">0</span>.0   <span class="m">0</span>.0
+  <span class="m">8</span>.<span class="p">|</span>-- <span class="m">116</span>.203.130.129            <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">0</span>.7   <span class="m">0</span>.9   <span class="m">0</span>.5   <span class="m">3</span>.4   <span class="m">0</span>.5</code></pre></div>
+<p>and:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mtr <span class="m">195</span>.201.229.18 -r -c <span class="m">30</span> -n
+ 
+Start: <span class="m">2019</span>-07-26T16:03:08+0200
+HOST: node-2                      Loss%   Snt   Last   Avg  Best  Wrst StDev
+  <span class="m">1</span>.<span class="p">|</span>-- <span class="m">172</span>.31.1.1                 <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">0</span>.2   <span class="m">0</span>.3   <span class="m">0</span>.2   <span class="m">0</span>.6   <span class="m">0</span>.1
+  <span class="m">2</span>.<span class="p">|</span>-- <span class="m">88</span>.99.159.74               <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">0</span>.2   <span class="m">0</span>.4   <span class="m">0</span>.2   <span class="m">3</span>.9   <span class="m">0</span>.7
+  <span class="m">3</span>.<span class="p">|</span>-- <span class="m">88</span>.99.159.33               <span class="m">0</span>.0%    <span class="m">30</span>   <span class="m">21</span>.7  <span class="m">23</span>.1  <span class="m">10</span>.1  <span class="m">82</span>.4  <span class="m">18</span>.7
+  <span class="m">4</span>.<span class="p">|</span>-- <span class="m">85</span>.10.237.193              <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">1</span>.0   <span class="m">1</span>.1   <span class="m">0</span>.8   <span class="m">3</span>.7   <span class="m">0</span>.6
+  <span class="m">5</span>.<span class="p">|</span>-- <span class="m">85</span>.10.247.146              <span class="m">0</span>.0%    <span class="m">30</span>   <span class="m">19</span>.0  <span class="m">16</span>.0   <span class="m">8</span>.4  <span class="m">22</span>.9   <span class="m">4</span>.2
+  <span class="m">6</span>.<span class="p">|</span>-- <span class="m">195</span>.201.64.84              <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">0</span>.5   <span class="m">0</span>.4   <span class="m">0</span>.3   <span class="m">0</span>.8   <span class="m">0</span>.1
+  <span class="m">7</span>.<span class="p">|</span>-- ???                       <span class="m">100</span>.0    <span class="m">30</span>    <span class="m">0</span>.0   <span class="m">0</span>.0   <span class="m">0</span>.0   <span class="m">0</span>.0   <span class="m">0</span>.0
+  <span class="m">8</span>.<span class="p">|</span>-- <span class="m">195</span>.201.229.18             <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">0</span>.8   <span class="m">1</span>.2   <span class="m">0</span>.5   <span class="m">8</span>.3   <span class="m">1</span>.6</code></pre></div>
+<p>So, for these two Hetzner Cloud hosts a round-trip takes about 40ms in average and fluctuates between 20ms (best) to over 100ms (worst).</p>
+
+<p>Network traffic over the private network looks a lot better:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mtr <span class="m">192</span>.168.0.3 -r -c <span class="m">30</span> -n
+
+Start: <span class="m">2019</span>-07-26T16:03:54+0200
+HOST: node-1                      Loss%   Snt   Last   Avg  Best  Wrst StDev
+  <span class="m">1</span>.<span class="p">|</span>-- <span class="m">192</span>.168.0.1                <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">8</span>.1   <span class="m">8</span>.2   <span class="m">5</span>.2  <span class="m">10</span>.5   <span class="m">1</span>.3
+  <span class="m">2</span>.<span class="p">|</span>-- <span class="m">192</span>.168.0.3                <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">0</span>.5   <span class="m">0</span>.9   <span class="m">0</span>.4   <span class="m">6</span>.3   <span class="m">1</span>.0</code></pre></div>
+<p>and:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mtr <span class="m">192</span>.168.0.2 -r -c <span class="m">30</span> -n
+
+Start: <span class="m">2019</span>-07-26T16:05:24+0200
+HOST: node-2                      Loss%   Snt   Last   Avg  Best  Wrst StDev
+  <span class="m">1</span>.<span class="p">|</span>-- <span class="m">192</span>.168.0.1                <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">4</span>.7   <span class="m">5</span>.3   <span class="m">4</span>.1  <span class="m">14</span>.2   <span class="m">1</span>.9
+  <span class="m">2</span>.<span class="p">|</span>-- <span class="m">192</span>.168.0.2                <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">0</span>.7   <span class="m">0</span>.7   <span class="m">0</span>.5   <span class="m">1</span>.2   <span class="m">0</span>.1</code></pre></div>
+<p><strong>NOTE</strong>: If you use <a href="https://www.wireguard.com/">wireguard</a> to create an encrypted overlay network between your hosts the performance is even better, but that&rsquo;s a topic for another post.</p>
+
+<p>Still, here&rsquo;s a mtr report for 3 Hetzner Cloud nodes connected with wireguard:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mtr <span class="m">10</span>.0.0.1 -r -c <span class="m">30</span> -n
+
+Start: <span class="m">2019</span>-07-26T16:26:44+0200
+HOST: cx11-ceph-nbg1-3            Loss%   Snt   Last   Avg  Best  Wrst StDev
+<span class="m">1</span>.<span class="p">|</span>-- <span class="m">10</span>.0.0.1                   <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">0</span>.8   <span class="m">0</span>.8   <span class="m">0</span>.6   <span class="m">1</span>.2   <span class="m">0</span>.1
+
+$ mtr <span class="m">10</span>.0.0.2 -r -c <span class="m">30</span> -n
+Start: <span class="m">2019</span>-07-26T16:23:17+0200
+HOST: cx11-ceph-nbg1-1            Loss%   Snt   Last   Avg  Best  Wrst StDev
+  <span class="m">1</span>.<span class="p">|</span>-- <span class="m">10</span>.0.0.2                   <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">0</span>.9   <span class="m">1</span>.1   <span class="m">0</span>.5   <span class="m">7</span>.6   <span class="m">1</span>.3
+  
+  
+$ mtr <span class="m">10</span>.0.0.3 -r -c <span class="m">30</span> -n
+Start: <span class="m">2019</span>-07-26T16:26:48+0200
+HOST: cx11-ceph-nbg1-1            Loss%   Snt   Last   Avg  Best  Wrst StDev
+  <span class="m">1</span>.<span class="p">|</span>-- <span class="m">10</span>.0.0.3                   <span class="m">0</span>.0%    <span class="m">30</span>    <span class="m">0</span>.7   <span class="m">0</span>.9   <span class="m">0</span>.6   <span class="m">1</span>.6   <span class="m">0</span>.2</code></pre></div>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://blinkeye.github.io/tags/kubernetes/">Kubernetes</a>&nbsp;
+            
+              <a href="https://blinkeye.github.io/tags/cloud/">Cloud</a>&nbsp;
+            
+              <a href="https://blinkeye.github.io/tags/hetzner/">Hetzner</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+          
+          <h4 class="see-also">See also</h4>
+          <ul>
+          
+            <li><a href="/post/public/2019-07-17-splunk/">Splunk Log Analysis</a></li>
+          
+            <li><a href="/post/public/2019-05-30-kubernetes-dashboard/">Kubernetes Dashboard</a></li>
+          
+            <li><a href="/post/public/2019-05-28-private-docker-registry/">Private Docker Registry</a></li>
+          
+          </ul>
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://blinkeye.github.io/post/public/2019-07-17-splunk/" data-toggle="tooltip" data-placement="top" title="Splunk Log Analysis">&larr; Previous Post</a>
+            </li>
+          
+          
+        </ul>
+      
+
+
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="https://github.com/blinkeye" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://gitlab.com/blinkeye" title="GitLab">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-gitlab fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="blog.blinkeye.ch">blinkeye</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://blinkeye.github.io">blinkeye</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.56.3</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha384-K3vbOmF2BtaVai+Qk37uypf7VrgBubhQreNQe9aGsz9lB63dIFiQVlJbr92dw2Lx" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/contrib/auto-render.min.js" integrity="sha384-kmZOZB5ObwgQnS/DuDg6TScgOiWWBiVt0plIRkZCmE6rDZGrEOQeHM5PcHi+nyqe" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://blinkeye.github.io/js/main.js"></script>
+<script src="https://blinkeye.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script><script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script><script src="https://blinkeye.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
+

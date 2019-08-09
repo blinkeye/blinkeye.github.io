@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes on blinkeye</title>
+    <link>https://blinkeye.github.io/tags/kubernetes/</link>
+    <description>Recent content in Kubernetes on blinkeye</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 25 Jul 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blinkeye.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>K8s on the Hetzner Cloud</title>
+      <link>https://blinkeye.github.io/post/public/2019-07-25-hetzner-k8s-with-private-network/</link>
+      <pubDate>Thu, 25 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/post/public/2019-07-25-hetzner-k8s-with-private-network/</guid>
+      <description>&lt;p&gt;Depending on how fast you can type (or copy and paste) you&amp;rsquo;ll get a publicly available Kubernetes multi-node cluster up and running in less than 15minutes.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Splunk Log Analysis</title>
+      <link>https://blinkeye.github.io/post/public/2019-07-17-splunk/</link>
+      <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/post/public/2019-07-17-splunk/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Private Docker Registry</title>
+      <link>https://blinkeye.github.io/post/public/2019-05-28-private-docker-registry/</link>
+      <pubDate>Wed, 29 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/post/public/2019-05-28-private-docker-registry/</guid>
+      <description>&lt;p&gt;User your own private docker registry for development or private/non-public projects.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Kubernetes Dashboard</title>
+      <link>https://blinkeye.github.io/post/public/2019-05-30-kubernetes-dashboard/</link>
+      <pubDate>Tue, 21 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://blinkeye.github.io/post/public/2019-05-30-kubernetes-dashboard/</guid>
+      <description>&lt;p&gt;If you ever worked with the &lt;a href=&#34;https://github.com/kubernetes/dashboard&#34;&gt;Kubernetes Dashboard&lt;/a&gt; you certainly have noticed the rather short session timeout (about 10 minutes).&lt;/p&gt;
+
+&lt;p&gt;By adjusting the startup parameters you can either:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Increase the timeout&lt;/li&gt;
+&lt;li&gt;Disable the timeout&lt;/li&gt;
+&lt;li&gt;Skip authentication altogether&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Skipping the authentication is useful in a dev environment where you don&amp;rsquo;t need or want authentication.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
